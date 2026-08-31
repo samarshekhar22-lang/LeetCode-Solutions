@@ -3,8 +3,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         unordered_map<char, int> u1; // Key is char, value is index
         int maxLength = 0;
-        int left = 0;
-        
+        int left = 0;  
         for (int right = 0; right < s.size(); right++) {
             char c = s[right]; // Avoid naming it 'i' to prevent shadowing the loop variable
             
