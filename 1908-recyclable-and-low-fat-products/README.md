@@ -1,4 +1,4 @@
-<p>Table: <code>Products</code></p>
+<h2><a href="https://leetcode.com/problems/recyclable-and-low-fat-products">Recyclable and Low Fat Products</a></h2> <img src='https://img.shields.io/badge/Difficulty-Easy-brightgreen' alt='Difficulty: Easy' /><hr><p>Table: <code>Products</code></p>
 
 <pre>
 +-------------+---------+
