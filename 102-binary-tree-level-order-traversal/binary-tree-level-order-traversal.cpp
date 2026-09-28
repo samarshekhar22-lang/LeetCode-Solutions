@@ -15,7 +15,7 @@ public:
         if(root==nullptr){
             return {};
         }
-        vector<vector<int>> v1;
+        vector<vector<int>> ans;
         queue<TreeNode*>q1;
         q1.push(root);
         while(!q1.empty()){
@@ -32,8 +32,8 @@ public:
                 q1.push(temp->right);
             }
             }
-            v1.push_back(v2);
+            ans.push_back(v2);
         }
-        return v1;
+        return ans;
     }
 };
