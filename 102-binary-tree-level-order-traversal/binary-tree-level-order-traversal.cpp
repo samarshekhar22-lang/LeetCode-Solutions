@@ -1,39 +1,44 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
-class Solution {
+ class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        if(root==nullptr){
+        vector<vector<int>> v1;
+        
+        if(root == nullptr){
             return {};
         }
-        vector<vector<int>> ans;
-        queue<TreeNode*>q1;
+        
+        // 1. Build the queue and start the line OUTSIDE the loop
+        queue<TreeNode*> q1; 
         q1.push(root);
+        
+        // 2. The engine runs until the queue is completely empty
         while(!q1.empty()){
-            vector<int>v2;
-            int l=q1.size();
-            for(int i=0;i<l;i++){
-                 TreeNode* temp=q1.front();
-            q1.pop();
-                v2.push_back(temp->val);
-            if(temp->left!=nullptr){
-                q1.push(temp->left);
+            
+            int l = q1.size(); 
+            vector<int> v2;    
+            
+            // 3. Process the exact number of nodes currently in this level
+            for(int i = 0; i < l; i++){
+                
+                // Grab, pop, and process INSIDE the batch loop
+                TreeNode* temp = q1.front(); 
+                q1.pop();
+                
+                v2.push_back(temp->val); // Use 'val' instead of 'data'
+                
+                // Send children to the back of the line
+                if(temp->left != nullptr){
+                    q1.push(temp->left); // Queues use 'push', not 'push_back'
+                }
+                if(temp->right != nullptr){
+                    q1.push(temp->right);
+                }
             }
-            if(temp->right!=nullptr){
-                q1.push(temp->right);
-            }
-            }
-            ans.push_back(v2);
+            
+            // 4. Batch is done, add it to the main answer
+            v1.push_back(v2); 
         }
-        return ans;
+        
+        return v1;
     }
 };
