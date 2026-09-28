@@ -1,44 +1,33 @@
- class Solution {
+class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> v1;
+        vector<vector<int>> ans; // The main 2D bucket
+        if (root == nullptr) return ans; 
         
-        if(root == nullptr){
-            return {};
-        }
+        queue<TreeNode*> q;
+        q.push(root);
         
-        // 1. Build the queue and start the line OUTSIDE the loop
-        queue<TreeNode*> q1; 
-        q1.push(root);
-        
-        // 2. The engine runs until the queue is completely empty
-        while(!q1.empty()){
+        while (!q.empty()) {
+            int levelSize = q.size(); // <--- THE MAGIC LINE. How many nodes on this level?
+            vector<int> currentLevel; // A temporary 1D bucket for just this current level
             
-            int l = q1.size(); 
-            vector<int> v2;    
-            
-            // 3. Process the exact number of nodes currently in this level
-            for(int i = 0; i < l; i++){
+            // Process ONLY the nodes that belong to this specific level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode* temp = q.front();
+                q.pop();
                 
-                // Grab, pop, and process INSIDE the batch loop
-                TreeNode* temp = q1.front(); 
-                q1.pop();
+                currentLevel.push_back(temp->val);
                 
-                v2.push_back(temp->val); // Use 'val' instead of 'data'
-                
-                // Send children to the back of the line
-                if(temp->left != nullptr){
-                    q1.push(temp->left); // Queues use 'push', not 'push_back'
-                }
-                if(temp->right != nullptr){
-                    q1.push(temp->right);
-                }
+                // Add the next level's children to the back of the line
+                if (temp->left != nullptr) q.push(temp->left);
+                if (temp->right != nullptr) q.push(temp->right);
             }
             
-            // 4. Batch is done, add it to the main answer
-            v1.push_back(v2); 
+            // The for-loop ends. This level is done. 
+            // Put this level's bucket into the main 2D bucket.
+            ans.push_back(currentLevel);
         }
         
-        return v1;
+        return ans;
     }
 };
