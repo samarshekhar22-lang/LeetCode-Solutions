@@ -21,13 +21,13 @@ public:
             l++;
             temp1=temp1->left;
         }
-        int c=0;
+        int r=0;
         TreeNode* temp2=root;
         while(temp2!=nullptr){
-            c++;
+            r++;
             temp2=temp2->right;
         }
-        if(l==c){
+        if(l==r){
             return pow(2,l)-1;
         }
         return countNodes(root->left)+countNodes(root->right)+1;
