@@ -21,8 +21,8 @@ public:
         if(root->right==nullptr){
             return minDepth(root->left)+1;
         }
-        int x=minDepth(root->right);
         int y=minDepth(root->left);
+        int x=minDepth(root->right);
         return min(x,y)+1;
     }
 };
