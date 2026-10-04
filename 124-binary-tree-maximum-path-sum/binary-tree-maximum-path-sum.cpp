@@ -18,7 +18,6 @@ class Solution {
         if(l<0) l=0;
         int r=maxSum(root->right,sum);
         if(r<0) r=0;
-        int z=root->val;
         sum=max(sum,l+r+root->val);
         return root->val +max(l,r);
     }
