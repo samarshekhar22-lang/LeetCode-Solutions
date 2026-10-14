@@ -10,28 +10,27 @@
  * };
  */
 class Solution {
-public:
-    void valid(TreeNode* root,long  min,long max ,bool &ans){
+public: 
+    void valid(TreeNode* root,long max,long min,bool &ans){
         if(root==nullptr){
             return;
         }
-        valid(root->left,min,root->val,ans);
+        valid(root->left,root->val,min,ans);
             if(root->val>=max){
                 ans=false;
             }
-        
-        valid(root->right,root->val,max,ans);
+        valid(root->right,max,root->val,ans);
             if(root->val<=min){
                 ans=false;
-            }
-        
-
+            
+        }
     }
+
     bool isValidBST(TreeNode* root) {
-        long min=LONG_MIN;;
         long max=LONG_MAX;
+        long min=LONG_MIN;
         bool ans=true;
-        valid(root,min,max,ans);
+        valid(root,max,min,ans);
         return ans;
     }
 };
