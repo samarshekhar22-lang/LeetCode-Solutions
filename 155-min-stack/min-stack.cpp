@@ -1,21 +1,19 @@
 class Node{
-    public:
-       int data;
-       int current_min;
-       Node* next;
+public:
+    int value;
+    int current_min;
+    Node*next;
 
-       Node(int val, int cur_min){
-        data=val;
+    Node(int val, int cur_min){
+        value=val;
         current_min=cur_min;
         next=nullptr;
-       }
+    }
 };
-
-
 
 class MinStack {
 public:
-     Node*top1;
+      Node*top1;
     MinStack() {
         top1=nullptr;
     }
@@ -33,14 +31,16 @@ public:
     }
     
     void pop() {
-        if(top1==nullptr) return;
+        if(top1==nullptr){
+            return;
+        }
         Node*temp=top1->next;
         delete top1;
         top1=temp;
     }
     
     int top() {
-        return top1==nullptr?-1:top1->data;
+        return top1==nullptr?-1:top1->value;
     }
     
     int getMin() {
